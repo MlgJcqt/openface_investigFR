@@ -1,5 +1,15 @@
 #!/usr/bin/env python2
 #
+####################################
+#
+# Example to compare images in 2 folders and generate list of matching scores in csv file
+# Maëlig Jacquet
+# 24.04.2020
+#
+# adapted from https://cmusatyalab.github.io/openface/
+#
+####################################
+#
 # Example to compare the faces in two images.
 # Brandon Amos
 # 2015/09/29
