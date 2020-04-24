@@ -99,15 +99,18 @@ def getRep(imgPath):
         print("-----\n")
     return rep
 
-# ##### ligne originale : NxN sur toutes les images
-# for (img1, img2) in itertools.combinations(args.imgs, 2):               ## extrait 2 images pour faire paire img1 et img2 (args --> parse, voir ligne 53)
+# ##### original line : NxN on all images in 1 folder
+# for (img1, img2) in itertools.combinations(args.imgs, 2):               ## extract 2 images to compare img1 vs img2 (args --> parse, ligne 53)
 #     d = getRep(img1) - getRep(img2)
 #     print("Comparing {} with {}.".format(img1, img2))
 #     print(
 # "  + Squared l2 distance between representations: {:0.3f}".format(np.dot(d, d)))
 # #####
 
-## Comparaison 1xN entre 2 dossiers ou 1 dossier 1 fichier + resultats fichiers csv
+##########
+## Comparison 1xN between 2 folders or 1 folder and 1 image 
+## + output as csv file with columns : Image 1 ; Image 2 ; Scores
+##########
 
 dirimg1 = args.imgs[0]
 dirimg2 = args.imgs[1]
@@ -116,9 +119,9 @@ results = args.imgs[2]
 fresult = open(results, "w+")
 fresult.write("Image 1;Image 2;Score\n")
 
-## lire path 1 commande term : si dossier, lister contenu
+## path 1
 if os.path.isdir(dirimg1):
-    listimg1 = []                               #liste tout le contenu du dossier correspondant
+    listimg1 = []                               
     for f in os.listdir(dirimg1):
         listimg1.append(dirimg1 + "/" + f )
 
@@ -138,7 +141,7 @@ else :
 ## comparaison chaque image du path 1 versus chaque du path 2
 for img1 in listimg1 :
     for img2 in listimg2:
-        nom_img1,_ = os.path.splitext(os.path.basename(img1))               #garder juste le nom ("nom_img1") sans le path ni l'extension (",_")
+        nom_img1,_ = os.path.splitext(os.path.basename(img1))               
         nom_img2,_ = os.path.splitext(os.path.basename(img2))
         print (nom_img1 + "      vs      " + nom_img2)
 
