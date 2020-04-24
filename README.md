@@ -6,6 +6,7 @@ Requires :
 * Python
 
 [1] Go in your Dockerfile folder and build container
+
 (The container here is based on bamos/openface, with an added line to solve path issue)
 
 ```
