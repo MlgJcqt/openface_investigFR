@@ -4,6 +4,7 @@ Using Openface algorithm from https://cmusatyalab.github.io/openface to compare 
 Requires :
 * Docker
 * Python
+* OpenCV (https://opencv.org/)
 
 [1] Build container from Dockerfile folder
 
