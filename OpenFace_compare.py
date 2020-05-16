@@ -118,16 +118,16 @@ def checkimg(imgPath, imglist):
         if not os.path.exists(error_path):
             os.makedirs(error_path)
 
-        error_file = open(error_path + "/errors.txt", "w+")
+        error_file = open(error_path + "/errors.txt", "a")
 
         if err == 1:
-            error_file.write("Unable to load image: {}\n".format(os.path.basename(imgPath)))
+            error_file.write("Unable to load image: {}\n".format(imgPath))
             print("Unable to load image: {}".format(image_error))
         elif err == 2:
-            error_file.write("Unable to find a face in: {}\n".format(os.path.basename(imgPath)))
+            error_file.write("Unable to find a face in: {}\n".format(imgPath))
             print("Unable to find a face in: {}".format(image_error))
         elif err == 3:
-            error_file.write("Unable to align image: {}\n".format(os.path.basename(imgPath)))
+            error_file.write("Unable to align image: {}\n".format(imgPath))
             print("Unable to align image: {}".format(image_error))
 
 
@@ -203,8 +203,8 @@ print (os.path.isdir(dirimg2))
 ## path 2
 if os.path.isdir(dirimg2):
     listimg2 = []
-    for f in os.listdir(dirimg2):
-        listimg2.append(dirimg2 + "/" + f )
+    for ff in os.listdir(dirimg2):
+        listimg2.append(dirimg2 + "/" + ff )
 else :
     listimg2=[dirimg2]
 
