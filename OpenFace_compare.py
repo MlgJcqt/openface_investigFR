@@ -42,6 +42,8 @@ np.set_printoptions(precision=2)
 
 import openface
 
+from tqdm import tqdm
+
 fileDir = os.path.dirname(os.path.realpath(__file__))
 # modelDir = os.path.join(fileDir, '..', 'models')
 modelDir = "/root/openface/models"        ### path fixe pour docker sous linux
@@ -184,7 +186,11 @@ dirimg2 = args.imgs[1]
 results = args.imgs[2]
 
 error_path = os.path.abspath(os.path.join(results, os.pardir)) + "/Errors/"
+<<<<<<< Updated upstream
 print os.path.abspath(os.path.join(results, os.pardir))
+=======
+#print os.path.abspath(os.path.join(results, os.pardir))
+>>>>>>> Stashed changes
 
 fresult = open(results, "w+")
 fresult.write("Image 1;Image 2;Score\n")
@@ -192,23 +198,35 @@ fresult.write("Image 1;Image 2;Score\n")
 ##### path 1 in terminal
 if os.path.isdir(dirimg1):
     listimg1 = []
+<<<<<<< Updated upstream
+=======
+    listnom1 = []
+>>>>>>> Stashed changes
     for f in os.listdir(dirimg1):
         listimg1.append(dirimg1 + "/" + f )
-
+        listnom1.append(f)
 else :
     listimg1=[dirimg1]
 
-print (os.path.isdir(dirimg2))
+#print (os.path.isdir(dirimg2))
 
 ## path 2
 if os.path.isdir(dirimg2):
     listimg2 = []
+<<<<<<< Updated upstream
     for ff in os.listdir(dirimg2):
         listimg2.append(dirimg2 + "/" + ff )
+=======
+    listnom2 = []
+    for ff in os.listdir(dirimg2):
+        listimg2.append(dirimg2 + "/" + ff )
+        listnom2.append(ff)
+>>>>>>> Stashed changes
 else :
     listimg2=[dirimg2]
 
 ##### process images and adapt list of images to compare by removing error inducing images
+<<<<<<< Updated upstream
 for list1 in listimg1:
     checkimg(list1, listimg1)
 
@@ -225,4 +243,38 @@ for img1 in listimg1 :
         d = getRep(img1) - getRep(img2)
         fresult.write("%s;%s;%.3f\n" % (nom_img1, nom_img2, np.dot(d, d)))
 
+=======
+with tqdm(total=len(listimg1), desc = 'Checking path1 images') as pbar1:
+    for list1 in listimg1:
+        checkimg(list1, listimg1)
+        pbar1.update(1)
+
+##### remove img in dir 2 if already in dir 1
+for element in listnom1:
+    if element in listnom2:
+        listimg2.remove(dirimg2 + element)
+#####
+
+with tqdm(total=len(listimg2), desc = 'Checking path2 images') as pbar2:
+    for list2 in listimg2:
+        checkimg(list2, listimg2)
+    	pbar2.update(1)
+
+#####
+tot_comp = len(listimg1) * len(listimg2)
+print ("{} comparisons to perform".format(tot_comp))
+
+##### Comparison all images in path 1 versus all in path 2
+with tqdm(total=tot_comp, desc = 'Running comparisons') as pbartot:
+	for img1 in listimg1 :
+	    for img2 in listimg2:
+    		nom_img1,_ = os.path.splitext(os.path.basename(img1))               #garder juste le nom ("nom_img1") sans le path ni l'extension (",_")
+    		nom_img2,_ = os.path.splitext(os.path.basename(img2))
+    		#print (nom_img1 + "      vs      " + nom_img2)
+
+    		d = getRep(img1) - getRep(img2)
+    		fresult.write("%s;%s;%.3f\n" % (nom_img1, nom_img2, np.dot(d, d)))
+
+    		pbartot.update(1)
+>>>>>>> Stashed changes
 fresult.close()
