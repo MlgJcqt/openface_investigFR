@@ -4,7 +4,7 @@
 #
 # Example to compare images in 2 folders and generate list of matching scores in csv file
 # Maelig Jacquet
-# 04.05.2020
+# 01.06.2020
 #
 # adapted from https://cmusatyalab.github.io/openface/
 #
