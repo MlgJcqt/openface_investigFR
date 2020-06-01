@@ -3,16 +3,14 @@ Using Openface algorithm from https://cmusatyalab.github.io/openface to compare 
 
 Requires :
 * Docker
-* Python
 * OpenCV (https://opencv.org/)
 
 [1] Build container from Dockerfile folder
 
-(The container here is based on bamos/openface, with an added line to solve path issue)
+(The container here is based on bamos/openface)
 
 ```
-$ cd /mjacquet/Investigation/Script/      
-$ docker build -t mjacquet/openface
+$ docker build /home/mjacquet/Investigation/Script/ -t mjacquet/openface
 ```
 
 [2] Run container and link folders to use as script and data sources (to simplify further code)
